@@ -1,9 +1,13 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'joom/turkish-deasciifier.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 
 """ Ayarlar
@@ -31,12 +35,27 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 au InsertLeave * set nopaste
 
 """ Eklenti yapilandirma
+" Buffergator; buffer'lar arasi gezinme
+nnoremap <C-n> :BuffergatorMruCycleNext<cr>
+nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
 
 " turkish-deasciifier; harflerdeki turkceye ozgu karakterlerin, kelimenin anlamina gore eklenip kaldirilmasini saglar.
 vmap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
 vmap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
 let g:turkish_deasciifier_path = '~/Git_Repolari/diger/turkish-deasciifier/turkish-deasciify'
 
+""" Nerdtree dizin/dosya paneli
+" Leader key ile acma
+"" map <Leader>n :NERDTreeMapToggleHidden<CR>
+map <Leader>n :NERDTreeToggle<CR>
+" Sadece NERDTREE penceresi aciksa Vim'i otomatik kapat;
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeMapJumpNextSibling = ''
+let g:NERDTreeMapJumpPrevSibling = ''
+let g:NERDTreeMapJumpLastChild = ''
+let g:NERDTreeMapJumpFirstChild = ''
+let g:NERDTreeWinSize=31
+let g:NERDTreeDirArrows=0
 " vim-tmux-navigator; tmux pane'leri arasinda vim kisayollariyla gezinme
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
