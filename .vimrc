@@ -7,18 +7,28 @@ Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 """ Ayarlar
+filetype on
 filetype plugin on
 filetype plugin indent on
 filetype indent on
 
+set nocompatible        " don't bother with vi compatibility
+set autoread            " reload files when changed on disk, i.e. via `git checkout`
+set tabstop=4           " tab uzunluğu
+set shiftwidth=4        "Görsel modda < ve > karakterlerine basıldığında bloğun ne kadar kaydırılacağı
+set softtabstop=4       "boşluklardan oluşan feyk tabın uzunluğu
+set expandtab           "tab'a basıldığında boşluk karakterlerinden oluşan feyk tab kullanılmasını sağlar.
+set lbr                 "linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
+set tw=79               "bir satırın alabileceği karakter sayısı
+set magic               " For regular expressions turn magic on
+
 set clipboard=unnamed
-set tabstop=4 " tab uzunluğu
 set term=tmux-256color
-set shiftwidth=4 "Görsel modda < ve > karakterlerine basıldığında bloğun ne kadar kaydırılacağı
-set softtabstop=4 "boşluklardan oluşan feyk tabın uzunluğu
-set expandtab "tab'a basıldığında boşluk karakterlerinden oluşan feyk tab kullanılmasını sağlar.
-set lbr "linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
-set tw=79 "bir satırın alabileceği karakter sayısı
+
+set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
+                                "    paste mode, where you can paste mass data
+                                "    that won't be autoindented
+au InsertLeave * set nopaste
 
 """ Eklenti yapilandirma
 
@@ -52,6 +62,39 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
+
+""" Görünüm
+hi StatusLine cterm=none gui=none
+hi StatusLineNC cterm=none gui=none
+hi VertSplit ctermfg=00
+hi SignColumn ctermbg=none
+
+hi Search ctermfg=25 ctermbg=16
+hi Folded ctermfg=25 ctermbg=16
+hi NonText ctermfg=00
+hi clear SignColumn
+hi TabLineFill cterm=none gui=none
+hi TabLine ctermfg=none ctermbg=none
+hi TabLineSel ctermfg=none ctermbg=none
+set statusline=%t\ %=\ %l:%c
+set fillchars+=vert:│
+
+"""" Window'u acik tut, buffer yonet
+" buffer'i kaydet
+nnoremap <Leader>w :w<bar>:Bclose!<cr>
+" buffer'i kaydetme
+nnoremap <Leader>q :Bclose!<cr>
+
+" buffer'lari kaydet
+noremap <Leader>s :wall<CR>
+"noremap <Leader>e :wall<CR>
+
+"""" Window'u kapatip buffer yonet
+" buffer'i kaydet
+noremap <S-w> :wqall!<CR>
+" buffer'lari kaydetme
+noremap <S-q> :bdelete!<cr>
+noremap <S-e> :qall!<cr>
 
 "colorscheme OceanicNext
 "if exists('+termguicolors')
