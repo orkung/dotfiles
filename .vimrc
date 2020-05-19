@@ -1,5 +1,7 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'lifepillar/vim-solarized8'
+Plug 'skielbasa/vim-material-monokai'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -16,18 +18,21 @@ filetype plugin on
 filetype plugin indent on
 filetype indent on
 
+syntax on
 set nocompatible        " don't bother with vi compatibility
 set autoread            " reload files when changed on disk, i.e. via `git checkout`
-set tabstop=4           " tab uzunluğu
-set shiftwidth=4        "Görsel modda < ve > karakterlerine basıldığında bloğun ne kadar kaydırılacağı
-set softtabstop=4       "boşluklardan oluşan feyk tabın uzunluğu
-set expandtab           "tab'a basıldığında boşluk karakterlerinden oluşan feyk tab kullanılmasını sağlar.
-set lbr                 "linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
-set tw=79               "bir satırın alabileceği karakter sayısı
+set tabstop=2           " tab uzunluğu
+set shiftwidth=4        " Görsel modda < ve > karakterlerine basıldığında bloğun ne kadar kaydırılacağı
+set softtabstop=2       " boşluklardan oluşan feyk tabın uzunluğu
+set expandtab           " tab'a basıldığında boşluk karakterlerinden oluşan feyk tab kullanılmasını sağlar.
+set lbr                 " linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
+set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
-
+noremap <Leader>s :update<CR> " mevcbut buffer'i diske kayededer
+let $PAGER='' " man page icin 
 set clipboard=unnamed
 set term=tmux-256color
+set t_Co=256
 
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
@@ -38,6 +43,7 @@ au InsertLeave * set nopaste
 " Buffergator; buffer'lar arasi gezinme
 nnoremap <C-n> :BuffergatorMruCycleNext<cr>
 nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
+nnoremap <Leader>b :BuffergatorToggle<CR> " acik buffer'lari listele
 
 " turkish-deasciifier; harflerdeki turkceye ozgu karakterlerin, kelimenin anlamina gore eklenip kaldirilmasini saglar.
 vmap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
@@ -116,8 +122,15 @@ noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
 "colorscheme OceanicNext
-"if exists('+termguicolors')
-"  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"  set termguicolors
-"endif
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+
+" Vim session
+let g:session_autosave= 'no'
+let g:session_autoload = 'yes' 
+"set sessionoptions=buffers
+
