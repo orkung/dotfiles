@@ -1,2 +1,2 @@
 ! -- This points to the default looks Xresource root file.
-#include "/etc/regolith/styles/lascaille/root"
+#include "/home/orkung/Git_Repolari/kisisel/public/dotfiles/regolith/styles/lascaille/root"

@@ -19,6 +19,7 @@ filetype plugin indent on
 filetype indent on
 
 syntax on
+set background=dark
 set nocompatible        " don't bother with vi compatibility
 set autoread            " reload files when changed on disk, i.e. via `git checkout`
 set tabstop=2           " tab uzunluğu
