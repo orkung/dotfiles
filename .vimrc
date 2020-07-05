@@ -31,10 +31,10 @@ set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
 noremap <Leader>s :update<CR> " mevcbut buffer'i diske kayededer
 let $PAGER='' " man page icin 
-set clipboard=unnamed
+set clipboard=unnamedplus
 set term=tmux-256color
 set t_Co=256
-
+"map y "+y
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
@@ -90,6 +90,7 @@ else
 endif
 
 """ Görünüm
+hi Normal guifg=#93a1a1 " metin gorunum rengi
 hi StatusLine cterm=none gui=none
 hi StatusLineNC cterm=none gui=none
 hi VertSplit ctermfg=00
