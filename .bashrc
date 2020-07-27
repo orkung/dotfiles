@@ -1,7 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-#export SHELL="/bin/bash --login"
+export SHELL="/bin/bash --login"
 #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # If not running interactively, don't do anything
@@ -156,9 +156,9 @@ vop(){
     vim --servername $VI_SERVER --remote-silent $*
 }
 
-export PATH="/home/orkung/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/.pyenv/bin:$HOME/.rvm/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

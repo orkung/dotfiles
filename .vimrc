@@ -18,6 +18,7 @@ filetype plugin on
 filetype plugin indent on
 filetype indent on
 
+set shell=bash\ --login
 syntax on
 set background=dark
 set nocompatible        " don't bother with vi compatibility
